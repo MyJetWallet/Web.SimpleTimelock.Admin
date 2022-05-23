@@ -1,5 +1,14 @@
-var express = require('express');
-var app = express();
+'use strict';
+
+const express = require('express');
+
+// Constants
+const PORT = 8080;
+const HOST = '0.0.0.0';
+
+// App
+const app = express();
 app.use(express.static(__dirname));
-app.listen('3301');
-console.log('Running at\nhttp://localhost:3301')
+
+app.listen(PORT, HOST);
+console.log(`Running on http://${HOST}:${PORT}`);
