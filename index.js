@@ -232,11 +232,11 @@ function setBeneficiary() {
 }
 
 function setNewOwner() {
-  const userAddress = document.getElementById('newOwner').value;
+  const newOwner = document.getElementById('newOwner').value;
   
-  console.log({ userAddress });
+  console.log({ newOwner });
 
-  contract.methods.setNewOwner(userAddress).send({ from: account }).then(function (tx) {
+  contract.methods.setNewOwner(newOwner).send({ from: account }).then(function (tx) {
     console.log("Transaction: ", tx);
     document.getElementById('transaction').innerHTML = tx;
   });
