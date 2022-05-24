@@ -227,7 +227,7 @@ function setBeneficiary() {
 
   contract.methods.setBeneficiary(userAddress, ta, rt, ui, ua).send({ from: account }).then(function (tx) {
     console.log("Transaction: ", tx);
-    document.getElementById('transaction').innerHTML = tx;
+    document.getElementById('transaction').innerHTML = tx.transactionHash;
   });
 }
 
