@@ -28,13 +28,18 @@ window.addEventListener('load', async () => {
   }
 
   // contractAddress and abi are setted after contract deploy
-  var contractAddress = '0x17D87a9B6b8ec5df93fE4229dA8f727411e9F5ea';
+  var contractAddress = '0x42ca190eF9A342E650E7d13F465e6D134bF97C07';
   var abi = [
     {
       "inputs": [
         {
           "internalType": "contract IERC20",
           "name": "token_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "owner_",
           "type": "address"
         }
       ],
@@ -160,6 +165,19 @@ window.addEventListener('load', async () => {
       "type": "function"
     },
     {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner_",
+          "type": "address"
+        }
+      ],
+      "name": "setNewOwner",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
       "inputs": [],
       "name": "token",
       "outputs": [
@@ -208,6 +226,17 @@ function setBeneficiary() {
   console.log({ userAddress, ta, rt, ui, ua });
 
   contract.methods.setBeneficiary(userAddress, ta, rt, ui, ua).send({ from: account }).then(function (tx) {
+    console.log("Transaction: ", tx);
+    document.getElementById('transaction').innerHTML = tx;
+  });
+}
+
+function setNewOwner() {
+  const userAddress = document.getElementById('newOwner').value;
+  
+  console.log({ userAddress });
+
+  contract.methods.setNewOwner(userAddress).send({ from: account }).then(function (tx) {
     console.log("Transaction: ", tx);
     document.getElementById('transaction').innerHTML = tx;
   });
